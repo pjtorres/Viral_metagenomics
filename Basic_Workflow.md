@@ -1,6 +1,3 @@
-# Viral Metagenomics
-Flow and scripts to analyze Viral metagenomics
-
 # Basic Workflow
 ## 1. Always run some sort of quality check to make sure your sequence output looks good and is the correct length ect..
 ### Can use FastqC (http://www.bioinformatics.babraham.ac.uk/projects/fastqc/)
