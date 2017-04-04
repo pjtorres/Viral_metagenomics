@@ -16,7 +16,7 @@
 #### blast (ftp://ftp.ncbi.nlm.nih.gov/blast/executables/LATEST/ncbi-blast-2.6.0+-x64-linux.tar.gz), MetaPhlan2 (https://bitbucket.org/biobakery/metaphlan2), FOCUS (http://edwards.sdsu.edu/focus/) , SUPERFOCUS (http://edwards.sdsu.edu/superfocus/), kraken (https://ccb.jhu.edu/software/kraken/), Human (https://huttenhower.sph.harvard.edu/humann)... ect Read up and see what will best help at answering your question
 ### but here I am doing viral metagenomics so:
 #### Need to get viral reference file here (ftp://ftp.ncbi.nlm.nih.gov/refseq/release/viral/) download viral1.1.genomics.fna (true viruses) and viral.2.1genomic.fna (evidence of virus but not fully accepted by NCBI i.e. crassphage). Then I will concatenate both files.
-#### you will need to build your database based on program used:
+### you will need to build your database based on program used:
 #### Smalt: smalt index -k 20 -s 13 viral /path/to/concatenated_viral_fna
 #### blast: makeblastdb -in /path/to/concatenated_viral_fna -dbtype nucl -out viral_blastdb
 
