@@ -20,7 +20,11 @@ perl -e 'foreach my $f qw(1_1bx_ATCACG_L001_ 12_1by_GAGTGG_L001_ 12_2by_ATTCCT_T
 #### a. Download Human Database: wget hgdownload.cse.ucsc.edu/goldenPath/hg19/bigZips/chromFa.tar.gz
 #### b. Then : tar -zxvf chromFa.tar.gz
 #### c. Concatenate all file: cat chr*.fa > hg19.fa
+#### d. Align sequences to reference human genome (using SMALT here)
 ```for file in *fastq; do smalt map -n 10 -y 0.9 -f samsoft -o ${file%}_noha19.samsoft ../../smalt/hg19 $file ; done```
+#### e. Create a fasta with reads that did ***NOT*** map to reference genome (from scripts folder)
+``` perl sansoft2fasta_nohits.pl ${file%}_noha19.samsoft >${file%}_noha19.fasta```
+
 ## 5. Annotate Sequences
 ### So many choices I will mention a few:
 #### blast (ftp://ftp.ncbi.nlm.nih.gov/blast/executables/LATEST/ncbi-blast-2.6.0+-x64-linux.tar.gz), MetaPhlan2 (https://bitbucket.org/biobakery/metaphlan2), FOCUS (http://edwards.sdsu.edu/focus/) , SUPERFOCUS (http://edwards.sdsu.edu/superfocus/), kraken (https://ccb.jhu.edu/software/kraken/), Human (https://huttenhower.sph.harvard.edu/humann)... ect Read up and see what will best help at answering your question
