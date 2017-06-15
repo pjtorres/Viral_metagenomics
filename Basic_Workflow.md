@@ -7,10 +7,12 @@
 ```java -jar trimmomatic-0.36.jar PE seqfile_R1_001.fastq.gz seqfile _R2_001.fastq.gz paired.output_seqfile _R1_001.fastq.gz unpaired.seqfile_R1_001.fastq.gz paired.output_seqfile R2_001.fastq.gz unpaired.output_seqfile_R2_001.fastq.gz -trimlog output.log ILLUMINACLIP:~/trimmomatic-0.36/adapters/TruSeq3-PE-2.fa:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:36```
 ## 3. Filter, reformat, or trim your genomic and metagenomic sequence data
 ### I usually use Prinseq (http://prinseq.sourceforge.net/)
-```#!/bin/bash
+```
+#!/bin/bash
 #$ -cwd
 #$ -S /bin/sh
-perl -e 'foreach my $f qw(1_1bx_ATCACG_L001_ 12_1by_GAGTGG_L001_ 12_2by_ATTCCT_TTCCT_L001_ 12_3by_CTTGTA_L001_) {print STDERR `perl ~/prinseq-lite-020.4/prinseq-lite.pl -verbose -derep 1245 -lc_method entropy -lc_threshold 50 -trim_qual_right 20 -trim_qual_left 20 -trim_qual_type mean -trim_qual_rule lt -trim_qual_window 2 -trim_qual_step 1 -trim_tail_left 5 -trim_tail_right 5 -min_len 60 -min_qual_mean 25 -ns_max_p 1 -fastq ~/Perio_NA_data/$f\R1_001.fastq -fastq2 ~/Perio_NA_data/$f\R2_001.fastq -log ~/Perio_NA_data/$f\_prinseq.log -out_bad ~/Perio_NA_data/$f\_prinseq_bad -out_good ~/Perio_NA_data/$f\_prinseq`}'```
+perl -e 'foreach my $f qw(1_1bx_ATCACG_L001_ 12_1by_GAGTGG_L001_ 12_2by_ATTCCT_TTCCT_L001_ 12_3by_CTTGTA_L001_) {print STDERR `perl ~/prinseq-lite-020.4/prinseq-lite.pl -verbose -derep 1245 -lc_method entropy -lc_threshold 50 -trim_qual_right 20 -trim_qual_left 20 -trim_qual_type mean -trim_qual_rule lt -trim_qual_window 2 -trim_qual_step 1 -trim_tail_left 5 -trim_tail_right 5 -min_len 60 -min_qual_mean 25 -ns_max_p 1 -fastq ~/Perio_NA_data/$f\R1_001.fastq -fastq2 ~/Perio_NA_data/$f\R2_001.fastq -log ~/Perio_NA_data/$f\_prinseq.log -out_bad ~/Perio_NA_data/$f\_prinseq_bad -out_good ~/Perio_NA_data/$f\_prinseq`}'
+```
 
 ## 4. Remove contamination- this will depend on sample source and question being asked. 
 ### Can use DeconSeq (http://deconseq.sourceforge.net/) , SMALT (http://www.sanger.ac.uk/science/tools/smalt-0), Snap (http://snap.cs.berkeley.edu/)... there are many tools to align your reads to a potential contamination reference genome and then remove those which aligned and keep those that did not.
