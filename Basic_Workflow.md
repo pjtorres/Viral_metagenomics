@@ -31,6 +31,8 @@ perl -e 'foreach my $f qw(1_1bx_ATCACG_L001_ 12_1by_GAGTGG_L001_ 12_2by_ATTCCT_T
 ### but here I am doing viral metagenomics so:
 #### Need to get viral reference file here (ftp://ftp.ncbi.nlm.nih.gov/refseq/release/viral/) download viral1.1.genomics.fna (true viruses) and viral.2.1genomic.fna (evidence of virus but not fully accepted by NCBI i.e. crassphage). Then I will concatenate both files.
 ### you will need to build your database based on program used:
-#### Smalt: smalt index -k 20 -s 13 viral /path/to/concatenated_viral_fna
-#### blast: makeblastdb -in /path/to/concatenated_viral_fna -dbtype nucl -out viral_blastdb
+#### Smalt: ```smalt index -k 20 -s 13 viral /path/to/concatenated_viral_fna```
+#### blast: ```makeblastdb -in /path/to/concatenated_viral_fna -dbtype nucl -out viral_blastdb```
+#### kraken: Building a Kraken database can be found [here](http://www.opiniomics.org/building-a-kraken-database-with-new-ftp-structure-and-no-gi-numbers/)
+
 
