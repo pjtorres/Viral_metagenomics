@@ -1,2 +1,2 @@
 # Viral Metagenomics
-Flow and scripts to analyze Viral metagenomics
+Work flow and scripts to analyze Viral metagenomics
