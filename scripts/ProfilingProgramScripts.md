@@ -1,4 +1,5 @@
-# Helpful Scripts on running some of the profiling programs out there. At this stage sequences have been trimmed, qualty checked, and removed of potential contamination (i.e. human). Look at Basic Workflow file
+# Helpful Scripts on running some of the profiling programs out there. 
+## At this stage sequences have been trimmed, qualty checked, and removed of potential contamination (i.e. human). Look at Basic Workflow file
 
 ## Kraken
 ### First build the database, this can be done by looking at the manual or looking at the website mentioned in me workflow document. Once this is done you can then run the following commands:
