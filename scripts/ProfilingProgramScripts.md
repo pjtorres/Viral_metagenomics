@@ -20,11 +20,11 @@
 ####     c. Then comes some tricky grep: the samsoft file is going to have alot of sequences that did not match but will still record on               the file so we need to seperate that using this code:
             grep -v '@SQ' trimmed_file_quality_checked_no_contamination.samsoft | grep -v '@HQ' | grep -v '@PG' | grep -v '@HD' | cut -f 3| sort -n | uniq -c |sort -n -r | paste -- > viral_hits.txt
        
-                  ```Example output:
+                           Example output:
                            Abundance   gene_ref
                            955402 
                             270 gi|155573622|ref|NC_006273.2|
-                            161 gi|9626243|ref|NC_001416.1|```
+                            161 gi|9626243|ref|NC_001416.1|
     
 ####     d. Now i will want to know what those gi belong to so i will do a complicated grep looking for those gi in my viral reference                 database:
             cat viral_hits.txt | cut -d'|' -f2 | xargs -I{} grep '{}' reference_viral_database.fasta > viral_names.txt
