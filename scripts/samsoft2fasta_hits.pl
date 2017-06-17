@@ -1,4 +1,4 @@
-#samsoft to fasta of the reads that do not map on the alignemnt
+#samsoft to fasta of the reads that did map on the reference index
 #
 #
 
