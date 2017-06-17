@@ -1,4 +1,4 @@
-#samsoft to fasta of the reads that do not map on the alignemnt
+#samsoft to fasta of the reads; to extract sequences that didn't hit my reference in this case human
 #
 #
 
