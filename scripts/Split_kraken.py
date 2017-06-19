@@ -4,7 +4,7 @@ import os
 import sys, getopt
 import argparse
 
-'''This script is used to split kraken-mpa formatted  output into files based on taxonomy rank'''
+'''This script is used to split kraken-mpa formatted  output into files based on taxonomic rank'''
 
 #------------Use the command line to take in arguments--------------------------
 parser = argparse.ArgumentParser(description='This is a script to parse out a  kraken-mpa-report formated file based on taxonomic rank.')
