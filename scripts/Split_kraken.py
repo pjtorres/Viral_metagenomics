@@ -8,7 +8,7 @@ import argparse
 
 #------------Use the command line to take in arguments--------------------------
 parser = argparse.ArgumentParser(description='This is a script to parse out a  kraken-mpa-report formated file based on taxonomic rank.')
-parser.add_argument('-i','--input', help='Input file name aka the output form running kraken-mpa',required=True)
+parser.add_argument('-i','--input', help='Input file name aka the output file from running kraken-mpa on multiple datasets',required=True)
 parser.add_argument('-o','--output',help='Output directory name.', required=False)
 args = parser.parse_args()
 inputfile= str(args.input) 
