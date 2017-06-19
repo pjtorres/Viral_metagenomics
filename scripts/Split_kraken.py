@@ -49,7 +49,7 @@ fout_s.write(header)
 
 #-----------Split file based on taxonomic rank-----------------------------------
 '''Following Split function will create a list seperated by '|' (this is how different
-taxonomic levels are seperated in kraken.  This way the length of the list will be dictitated
+taxonomic levels are seperated in kraken.  This way the length of the list will be dictated
 by how many taxonomic levels the current line contains (i.e., len(kingdom)==1, len(phylum)==2,
 len(class)==3 ..ect)'''
 for line in fin:
