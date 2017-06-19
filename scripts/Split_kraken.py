@@ -6,23 +6,20 @@ import argparse
 
 '''This script is used to split kraken-mpa formatted  output into files based on taxonomy rank'''
 
- 
-parser = argparse.ArgumentParser(description='This is a script to parse out a kraken-mpa formated file based on taxonomic rank.')
+#------------Allow the script to bring in arguments in the command line---------
+parser = argparse.ArgumentParser(description='This is a script to parse out a  kraken-mpa-report formated file based on taxonomic rank.')
 parser.add_argument('-i','--input', help='Input file name aka the output form running kraken-mpa',required=True)
 parser.add_argument('-o','--output',help='Output directory name.', required=False)
 args = parser.parse_args()
+inputfile= str(args.input) 
 
- 
-
-inputfile= str(args.input)
-#--------Create new directory for file output-----
-path=str(args.output) #'Split_kraken_o'
-
+#--------Create new directory for file output-----------------------------------
+path=str(args.output) 
 if not os.path.exists(path):
     os.makedirs(path)
 
 
-'''write names of files that will appear in new directory'''
+#------- The path and names of files that will appear in new output directory--
 k = os.path.join(path, "L1_kingdom"+".txt")
 p = os.path.join(path, "L2_phylum"+".txt")
 c = os.path.join(path, "L3_class"+".txt")
@@ -31,7 +28,7 @@ f = os.path.join(path, "L5_family"+".txt")
 g = os.path.join(path, "L6_genus"+".txt")
 s = os.path.join(path, "L7_species"+".txt")
 
-
+#------- open inputfile and new output files-----------------------------------
 fin=open(inputfile,'r')
 header=fin.readline()# this will write out the first line of the file aka header.
 '''will open a file for each taxonomic level and write the header'''
@@ -49,14 +46,15 @@ fout_g=open(g,"w")
 fout_g.write(header)
 fout_s=open(s,"w")
 fout_s.write(header)
-'''Followign Split function will create a list seperated by '|' (this is how different
+
+#-----------Split file based on taxonomic rank-----------------------------------
+'''Following Split function will create a list seperated by '|' (this is how different
 taxonomic levels are seperated in kraken.  This way the length of the list will be dictitated
 by how many taxonomic levels the current line contains (i.e., len(kingdom)==1, len(phylum)==2,
 len(class)==3 ..ect)'''
 for line in fin:
     split=line.split('|')
-    ln_split=len(split)
-        
+    ln_split=len(split)      
     if ln_split==1:#Kingdom
         fout_k.write(line)
     elif ln_split==2:#Phylum
@@ -80,7 +78,3 @@ fout_f.close()
 fout_g.close()
 fout_s.close()     
 fin.close()
-
-
-
-
