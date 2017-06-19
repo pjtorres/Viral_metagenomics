@@ -6,7 +6,7 @@ import argparse
 
 '''This script is used to split kraken-mpa formatted  output into files based on taxonomy rank'''
 
-#------------Allow the script to bring in arguments in the command line---------
+#------------Use the command line to take in arguments--------------------------
 parser = argparse.ArgumentParser(description='This is a script to parse out a  kraken-mpa-report formated file based on taxonomic rank.')
 parser.add_argument('-i','--input', help='Input file name aka the output form running kraken-mpa',required=True)
 parser.add_argument('-o','--output',help='Output directory name.', required=False)
