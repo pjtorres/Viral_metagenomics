@@ -1,4 +1,4 @@
-# Combine blast outputs from many different output files into an OTU style format
+# Combine multiple blast output files into a single OTU style text format
 import os
 
 
