@@ -5,22 +5,16 @@ import sys, getopt
 import argparse
 
 '''This script is used to split kraken-mpa formatted  output into files based on taxonomy rank'''
-
- 
 parser = argparse.ArgumentParser(description='This is a script to parse out a kraken-mpa formated file based on taxonomic rank.')
 parser.add_argument('-i','--input', help='Input file name aka the output from running kraken-mpa',required=True)
 parser.add_argument('-o','--output',help='Output directory name.', required=False)
 args = parser.parse_args()
-
- 
-
 inputfile= str(args.input)
+
 #--------Create new directory for file output-----
 path=str(args.output) #'Split_kraken_o'
-
 if not os.path.exists(path):
     os.makedirs(path)
-
 
 '''write names of files that will appear in new directory'''
 k = os.path.join(path, "L1_kingdom"+".txt")
@@ -31,7 +25,7 @@ f = os.path.join(path, "L5_family"+".txt")
 g = os.path.join(path, "L6_genus"+".txt")
 s = os.path.join(path, "L7_species"+".txt")
 
-
+#-----read the file and open new text-------
 fin=open(inputfile,'r')
 header=fin.readline()# this will write out the first line of the file aka header.
 '''will open a file for each taxonomic level and write the header'''
@@ -49,6 +43,8 @@ fout_g=open(g,"w")
 fout_g.write(header)
 fout_s=open(s,"w")
 fout_s.write(header)
+
+#-------------------------------------------------------------------------------
 '''Followign Split function will create a list seperated by '|' (this is how different
 taxonomic levels are seperated in kraken.  This way the length of the list will be dictitated
 by how many taxonomic levels the current line contains (i.e., len(kingdom)==1, len(phylum)==2,
