@@ -30,5 +30,12 @@
             cat viral_hits.txt | cut -d'|' -f2 | xargs -I{} grep '{}' reference_viral_database.fasta > viral_names.txt
 ####     c. Then we can go to the next part which is pasting the viral names to viral hits:
             cut -d' ' -f1 --complement viral_names.txt | paste viral_hits.txt - >viral_hits_and_names.txt
+            
+## BLAST
+
+####     a. ```/home3/torres/ncbi-blast-2.6.0+/bin/blastn -query ../smalt/DNA3_trim_prin_nohg19.fasta -outfmt "6 stitle pident evalue" -out DNA3_trim_prin_noh19_viral_blast.txt -db ../Virus_db/viral_blastdb -dust no -max_target_seqs 1```
+#####    I take away the 'pindent' and 'evalue' if I just want the top hit and don't care about the sequence similarity or evalue so you would put -outfmt "6 stitle" 
+####     b. run without the e-value ```/home3/torres/ncbi-blast-2.6.0+/bin/blastn -query ../smalt/DNA3_trim_prin_nohg19.fasta -outfmt "6 stitle" -out DNA3_trim_prin_noh19_viral_blast.txt -db ../Virus_db/viral_blastdb -dust no -max_target_seqs 1```
+#####    stitle makes sure your output includes the genus name which is really cool. I use '-max_taget_seqs 1' in the end to make sure it only returns the blast hit with the highest percent similarity and evalue score
 
 
