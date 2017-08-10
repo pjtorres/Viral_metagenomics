@@ -20,6 +20,9 @@ perl -e 'foreach my $f qw(1_1bx_ATCACG_L001_ 12_1by_GAGTGG_L001_ 12_2by_ATTCCT_T
 #### a. Download Human Database: ```wget hgdownload.cse.ucsc.edu/goldenPath/hg19/bigZips/chromFa.tar.gz```
 #### b. Then : ```tar -zxvf chromFa.tar.gz```
 #### c. Concatenate all file: ```cat chr*.fa > hg19.fa```
+### Alternatively: got my files from ftp://ftp.ncbi.nih.gov/genomes/H_sapiens/Assembled_chromosomes/seq/    but always make sure you get the latest human genome. For instance a lot of the older studies use human reference genome GRCh37, but new research including mine used human reference genome GRch38. If you are not sure just look around google and see what is new out there. Once you do that you can extract and join the data using these commands:
+#### a1. for i in {1..22} X Y MT; do wget ftp://ftp.ncbi.nih.gov/genomes/H_sapiens/Assembled_chromosomes/seq/hs_ref_GRCh38.p7_chr$i.fa.gz; done
+#### a2. for i in {1..22} X Y MT; do gzip -dvc hs_ref_GRCh38.p7_chr$i.fa.gz >>hs_ref_GRCh38.fa; rm hs_ref_GRCh38_chr$i.fa.gz; done
 #### d. Align sequences to reference human genome (using SMALT here)
 ```for file in *fastq; do smalt map -n 10 -y 0.9 -f samsoft -o ${file%}_noha19.samsoft ../../smalt/hg19 $file ; done```
 #### e. Create a fasta with reads that did ***NOT*** map to reference genome (from scripts folder)
