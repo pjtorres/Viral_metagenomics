@@ -23,6 +23,22 @@ perl -e 'foreach my $f qw(1_1bx_ATCACG_L001_ 12_1by_GAGTGG_L001_ 12_2by_ATTCCT_T
 ### Alternatively: got my files from ftp://ftp.ncbi.nih.gov/genomes/H_sapiens/Assembled_chromosomes/seq/    but always make sure you get the latest human genome. For instance a lot of the older studies use human reference genome GRCh37, but new research including mine used human reference genome GRch38. If you are not sure just look around google and see what is new out there. Once you do that you can extract and join the data using these commands detaile dinfo found in [Rob Edwards Blog](https://edwards.sdsu.edu/research/how-to-create-a-database-for-bwa-and-bwa-sw/):
 #### a1. for i in {1..22} X Y MT; do wget ftp://ftp.ncbi.nih.gov/genomes/H_sapiens/Assembled_chromosomes/seq/hs_ref_GRCh38.p7_chr$i.fa.gz; done
 #### a2. for i in {1..22} X Y MT; do gzip -dvc hs_ref_GRCh38.p7_chr$i.fa.gz >>hs_ref_GRCh38.fa; rm hs_ref_GRCh38_chr$i.fa.gz; done
+#### a3. Remove N's from Human_db 
+    ``` cat hs_ref_GRCh37_p2.fa | perl -p -e 's/Nn/N/' | perl -p -e 's/^N+//;s/N+$//;s/N{200,}/n>splitn/' >hs_ref_GRCh37_p2_split.fa; rm hs_ref_GRCh37_p2.fa```
+#### a4. this gives me a fast file with lots of spaces, so the following command will remove empty spaces 
+```sed '/^\s*$/d' file.fq```
+#### a5. Quality control fro HDB
+```perl ~/prinseq-lite-0.20.4/prinseq-lite.pl -verbose -fasta hs_ref_GRCh37_p2_split_nospace.fasta -min_len 200 -ns_max_p 10 -derep 12345 -out_good hs_ref_GRCh37_p2_split_prinseq -seq_id hs_ref_GRCh37_p2_ -rm_header -out_bad null```
+#### a6. Make Deconseq dabase using bwa, I used a Centos clusterso this was how i ran my code:
+#### MIght hve to change pinse fastq output to fasta:
+```$ cat file_in.fastq | perl -e '$i=0;while(< >){if(/^@/&&$i==0){s/^@/>/;print;}elsif($i==1){print;$i=-3}$i++;}' > file_out.fasta```
+#### Then make your human database to use on Deconseq, and will do the same for bacterial and viral database.
+```./../bwasw_modified_source/bwa64 index -p hs_ref_GRCh37_p7 -a bwtsw human_prinseqgood.fna > human_out.txt```
+### Aligning Sequences to HUman_db to remove contamination
+#### d. Align sequenses using deconseq:
+```perl deconseq.pl -f fastq -dbs hs_ref_GRCh37_p7 -dbs_retain bacteria_virus -out_dir deconseq/ -id fastq_file_name -i 90 -c 90 -group 1```
+* Will have to change the DeconSeqConfig.pm
+
 #### d. Align sequences to reference human genome (using SMALT here)
 ```for file in *fastq; do smalt map -n 10 -y 0.9 -f samsoft -o ${file%}_noha19.samsoft ../../smalt/hg19 $file ; done```
 #### e. Create a fasta with reads that did ***NOT*** map to reference genome (from scripts folder)
