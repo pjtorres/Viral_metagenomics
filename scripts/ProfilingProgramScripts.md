@@ -15,7 +15,7 @@
          smalt index -k -s 13 viral viral.genomic.fa
    
 ####     b. Map to reference genome:  ( y is the percent alignment i want use .9 for human but if doing viruses you will use 0.8)
-         smalt map -n 10 -y 0.8 -f samsoft -o file.samsoft trimmed_file_quality_checked_no_contamination.fasta 
+         ```smalt map -n 10 -y 0.97 -x -f samsoft -o file1_smalt.samsoft human_GRCh38 file1_prinseq_good_1.fastq``` 
          
 ####     c. Then comes some tricky grep: the samsoft file is going to have alot of sequences that did not match but will still record on               the file so we need to seperate that using this code:
             grep -v '@SQ' trimmed_file_quality_checked_no_contamination.samsoft | grep -v '@HQ' | grep -v '@PG' | grep -v '@HD' | cut -f 3| sort -n | uniq -c |sort -n -r | paste -- > viral_hits.txt
