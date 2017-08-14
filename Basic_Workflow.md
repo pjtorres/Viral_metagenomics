@@ -31,7 +31,7 @@ perl -e 'foreach my $f qw(1_1bx_ATCACG_L001_ 12_1by_GAGTGG_L001_ 12_2by_ATTCCT_T
 ```perl ~/prinseq-lite-0.20.4/prinseq-lite.pl -verbose -fasta hs_ref_GRCh37_p2_split_nospace.fasta -min_len 200 -ns_max_p 10 -derep 12345 -out_good hs_ref_GRCh37_p2_split_prinseq -seq_id hs_ref_GRCh37_p2_ -rm_header -out_bad null```
 #### a6. Make Deconseq dabase using bwa, I used a Centos clusterso this was how i ran my code:
 #### MIght hve to change pinse fastq output to fasta:
-```$ cat file_in.fastq | perl -e '$i=0;while(< >){if(/^@/&&$i==0){s/^@/>/;print;}elsif($i==1){print;$i=-3}$i++;}' > file_out.fasta```
+```$ cat file_in.fastq | perl -e '$i=0;while(<>){if(/^@/&&$i==0){s/^@/>/;print;}elsif($i==1){print;$i=-3}$i++;}' > file_out.fasta```
 #### Then make your human database to use on Deconseq, and will do the same for bacterial and viral database.
 ```./../bwasw_modified_source/bwa64 index -p hs_ref_GRCh37_p7 -a bwtsw human_prinseqgood.fna > human_out.txt```
 ### Aligning Sequences to HUman_db to remove contamination
