@@ -24,7 +24,7 @@ perl -e 'foreach my $f qw(1_1bx_ATCACG_L001_ 12_1by_GAGTGG_L001_ 12_2by_ATTCCT_T
 #### a1. for i in {1..22} X Y MT; do wget ftp://ftp.ncbi.nih.gov/genomes/H_sapiens/Assembled_chromosomes/seq/hs_ref_GRCh38.p7_chr$i.fa.gz; done
 #### a2. for i in {1..22} X Y MT; do gzip -dvc hs_ref_GRCh38.p7_chr$i.fa.gz >>hs_ref_GRCh38.fa; rm hs_ref_GRCh38_chr$i.fa.gz; done
 #### a3. Remove N's from Human_db 
-    ``` cat hs_ref_GRCh37_p2.fa | perl -p -e 's/Nn/N/' | perl -p -e 's/^N+//;s/N+$//;s/N{200,}/n>splitn/' >hs_ref_GRCh37_p2_split.fa; rm hs_ref_GRCh37_p2.fa```
+```cat hs_ref_GRCh37_p2.fa | perl -p -e 's/Nn/N/' | perl -p -e 's/^N+//;s/N+$//;s/N{200,}/n>splitn/' >hs_ref_GRCh37_p2_split.fa; rm hs_ref_GRCh37_p2.fa```
 #### a4. this gives me a fast file with lots of spaces, so the following command will remove empty spaces 
 ```sed '/^\s*$/d' file.fq```
 #### a5. Quality control fro HDB
