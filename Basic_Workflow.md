@@ -27,7 +27,7 @@ perl -e 'foreach my $f qw(1_1bx_ATCACG_L001_ 12_1by_GAGTGG_L001_ 12_2by_ATTCCT_T
 ```cat hs_ref_GRCh37_p2.fa | perl -p -e 's/Nn/N/' | perl -p -e 's/^N+//;s/N+$//;s/N{200,}/n>splitn/' >hs_ref_GRCh37_p2_split.fa; rm hs_ref_GRCh37_p2.fa```
 #### a4. this gives me a fast file with lots of spaces, so the following command will remove empty spaces 
 ```sed '/^\s*$/d' file.fq```
-#### a5. Quality control fro HDB
+#### a5. Quality control for Human Database - Read up on Robs Blog above on why this is important
 ```perl ~/prinseq-lite-0.20.4/prinseq-lite.pl -verbose -fasta hs_ref_GRCh37_p2_split_nospace.fasta -min_len 200 -ns_max_p 10 -derep 12345 -out_good hs_ref_GRCh37_p2_split_prinseq -seq_id hs_ref_GRCh37_p2_ -rm_header -out_bad null```
 #### a6. Make Deconseq dabase using bwa, I used a Centos clusterso this was how i ran my code:
 #### MIght hve to change pinse fastq output to fasta:
