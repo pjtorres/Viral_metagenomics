@@ -7,7 +7,6 @@ from Bio import SeqIO
 """Script allows changing the headers of fa files downloaded and concatinated from NCBI ref seq. After this script
 headers should include Accesion number followed by full taxonomic lineage as well as species specidficity"""
 
-
 #-----------Command Line Arguments-----------------
 parser=argparse.ArgumentParser(description="This script uses python3 and Biopython. Make sure both are installed. Script will change fasta header from NCBI refseq.fa files to include both accesion numbers and taxonomic lineage. You will also need a text file with accesion numbers in it. This is how you can make one using the ref seq files downloaded from NCBI: sed 's/\s.*$//' viral_all.fna | grep > | sed 's/>//' > Viral_accesion_numbers.txt")
 parser.add_argument('-a','--acc', help=' Input file containing accesion numbers -aka Viral_accesion_numbers.txt . Look at desciption to see how',required=True)
@@ -16,15 +15,16 @@ parser.add_argument('-o','--output',help='New output file name. Example: Viral_n
 args = parser.parse_args()
 accfile=str(args.acc) #name of accesion file
 fastafile=str(args.input) #name of fasta file want to change
-outputfile=str(args.output)
+outputfile=str(args.output) # name of output file with new header
+
 #--------Get information from accesion number-------
 print ("Processing... Might take a while so grab a beer or check out twitter")
 Entrez.email = '##############'
 # open my file and parse it
 #accfile="short_list_accesion.txt"
-
 fin1=open(accfile,'r')
 lineage_info={} # will keep info on accesion numbers and lineage for later use when makng new header
+
 for line in fin1:
     handle = Entrez.efetch(db="nucleotide", id=str(line), rettype="gb", retmode="text")
     x = SeqIO.read(handle, 'genbank')# get information regarding your accesion number in here will be taxonomy
