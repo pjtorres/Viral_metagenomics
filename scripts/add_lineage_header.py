@@ -52,7 +52,7 @@ fout=open(outputfile,'w+')
 for line in fin2:
     if line.startswith('>'):
         acc_num=line[1:12]
-        new_header=('>'+'ref|'+acc_num+'|'+'\t'+lineage_info[acc_num]+'\n') #changed the header more to work with my combined_blast_o.py script
+        new_header=('>'+'ref|'+acc_num+'|'+' '+lineage_info[acc_num]+'\n') #changed the header more to work with my combined_blast_o.py script
         #print (new_header)
         fout.write(new_header)      
     else:
