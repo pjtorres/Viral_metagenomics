@@ -39,3 +39,4 @@
 #####    stitle makes sure your output includes the genus name which is really cool. I use '-max_taget_seqs 1' in the end to make sure it only returns the blast hit with the highest percent similarity and evalue score
 
 
+####                                                                                             Pedro J. Torres - pjtorres88@gmail.com
