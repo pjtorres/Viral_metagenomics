@@ -18,7 +18,7 @@ fastafile=str(args.input) #name of fasta file want to change
 outputfile=str(args.output) # name of output file with new header
 
 #--------Get information from accesion number-------
-print ("Processing... Might take a while so grab a beer or check out twitter")
+print ("Processing... Might take a while so take a walk, grab a beer or aimlessly wander the internet")
 Entrez.email = '##############'
 # open my file and parse it
 #accfile="short_list_accesion.txt"
