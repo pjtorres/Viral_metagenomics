@@ -52,6 +52,6 @@ perl -e 'foreach my $f qw(1_1bx_ATCACG_L001_ 12_1by_GAGTGG_L001_ 12_2by_ATTCCT_T
 ### you will need to build your database based on program used:
 #### Smalt: ```smalt index -k 20 -s 13 viral /path/to/concatenated_viral_fna```
 #### blast: ```makeblastdb -in /path/to/concatenated_viral_fna -dbtype nucl -out viral_blastdb```
-#### kraken: Building a Kraken database can be found [here](http://www.opiniomics.org/building-a-kraken-database-with-new-ftp-structure-and-no-gi-numbers/)
+#### kraken: Building a Kraken database can be found [here](http://www.opiniomics.org/building-a-kraken-database-with-new-ftp-structure-and-no-gi-numbers/) and [here](http://bioinformatics.cvr.ac.uk/blog/update-kraken-databases/)
 
 
