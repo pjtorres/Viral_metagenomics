@@ -50,7 +50,7 @@ for line in fin:
         fout_a.write(line)
     elif domain[0]=="d__Eukaryota":
         fout_e.write(line)
-                    
+print "Done :)"                    
 fout_b.close()
 fout_v.close()
 fout_a.close()
