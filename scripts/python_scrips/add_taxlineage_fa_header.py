@@ -5,7 +5,7 @@ from Bio import Entrez
 from Bio import SeqIO
 
 """Script allows changing the headers of fa files downloaded and concatinated from NCBI ref seq. After this script
-headers should include Accesion number followed by full taxonomic lineage as well as species specidficity"""
+headers should include Accesion number followed by full taxonomic lineage as well as species specificity"""
 
 #-----------Command Line Arguments-----------------
 parser=argparse.ArgumentParser(description="This script uses python3 and Biopython. Make sure both are installed. Script will change fasta header from NCBI refseq.fa files to include both accesion numbers and taxonomic lineage. You will also need a text file with accesion numbers in it. This is how you can make one using the ref seq files downloaded from NCBI: sed 's/\s.*$//' viral_all.fna | grep > | sed 's/>//' > Viral_accesion_numbers.txt")
