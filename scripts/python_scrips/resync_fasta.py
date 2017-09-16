@@ -1,22 +1,20 @@
 #!/usr/bin/env python
-""" This is a slightly modified version of @enormandeau's code. I needed it for fasta files
-Resynchronize 2 fastq or fastq.gz files (R1 and R2) after they have been
+""" This is a slightly modified version of Eric Normandeau's (@enormandeau) code. I changed it a bit to work with fasta files;originaly made for fastq files
+resync_fasta taked 2 fasta or fasta.gz files (R1 and R2) after they have been
 trimmed and cleaned
-WARNING! This program assumes that the fastq file uses EXACTLY four lines per
-    sequence
 Three output files are generated. The first two files contain the reads of the
     pairs that match and the third contains the solitary reads.
 Usage:
-    python resync.py input1 input2 separator
-input1 = LEFT  fastq or fastq.gz file (R1)
-input2 = RIGHT fastq or fastq.gz file (R2)
+    python resync_fasta.py input1 input2 separator
+input1 = LEFT  fasta or fasta.gz file (R1)
+input2 = RIGHT fasta or fasta.gz file (R2)
 separator = character that separates the name of the read from the part that
     describes if it goes on the left or right, usually with characters '1' or
     '2'.  The separator is often a space, but could be another character. A
     space is used by default. If the sequence names do not contain two parts
     and you want to use the full name info to pair your sequences, use 'None'
     (as text) for the separator. Eg:
-        python fastqCombinePairedEnd.py input1 input2 None
+        python resync_fasta.py input1 input2 None
 """
 
 # Importing modules
