@@ -37,6 +37,6 @@
 #####    I take away the 'pindent' and 'evalue' if I just want the top hit and don't care about the sequence similarity or evalue so you would put -outfmt "6 stitle" 
 ####     b. run without the e-value ```/home3/torres/ncbi-blast-2.6.0+/bin/blastn -query ../smalt/DNA3_trim_prin_nohg19.fasta -outfmt "6 stitle" -out DNA3_trim_prin_noh19_viral_blast.txt -db ../Virus_db/viral_blastdb -dust no -max_target_seqs 1```
 #####    stitle makes sure your output includes the genus name which is really cool. I use '-max_taget_seqs 1' in the end to make sure it only returns the blast hit with the highest percent similarity and evalue score
-
+#####    c. run blastn with increased specificity ```~/ncbi-blast-2.6.0+/bin/blastn -query File1.fasta -outfmt "6 stitle" -out File1.blastn.txt -db ~/Virus_db/viral_nucleotide/viral -dust no -max_target_seqs 1 -perc_identity 90 -evalue 0.0001 -min_raw_gapped_score 105```
 
 ####                                                                                             Pedro J. Torres - pjtorres88@gmail.com
