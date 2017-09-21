@@ -10,6 +10,7 @@ fastafile=str(args.input) #name of the unmerged fasta file
 outputfile=str(args.output) # name of output file with new header
 
 # ----------------- Command will convert your fasta file into a dictionary with fasta header as key and fasta sequence as value------
+print 'Starting Process'
 infile=fastafile
 fin=open(infile,'r')
 fasta={}
@@ -31,5 +32,7 @@ for i in fasta.keys():
     if '1:N' in i:# search for this particular pattern as this 1:N tells you that you are dealing with a foward read
         fout.write(i+'\n'+"".join(x for x in fasta[i])+'\n')
 fout.close()
+
+print 'Done :)'
   
     
