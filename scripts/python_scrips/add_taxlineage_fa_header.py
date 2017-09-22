@@ -21,9 +21,8 @@ outputfile=str(args.output) # name of output file with new header
 print ("Processing... Might take a while so take a walk, grab a beer or aimlessly wander the internet")
 Entrez.email = '##############'
 # open my file and parse it
-#accfile="short_list_accesion.txt"
 fin1=open(accfile,'r')
-lineage_info={} # will keep info on accesion numbers and lineage for later use when makng new header
+lineage_info={} #will keep info on accesion numbers and lineage for later use when makng new header
 
 for line in fin1:
     handle = Entrez.efetch(db="nucleotide", id=str(line), rettype="gb", retmode="text")
@@ -31,10 +30,8 @@ for line in fin1:
     tax=x.annotations['taxonomy']# only get taxonomy
     taxf=";".join(tax)#join taxonomy based on ';' character
     full_lineage=(taxf+';'+x.annotations['organism']) # but i also want the organism name so this will also add organism specific name
-    #print (line + '\t'+full_lineage)
     line=line.strip()
     lineage_info[line]=full_lineage
-    #print (lineage_info)
 print("You have "+ str(len(lineage_info))+' accesion numbers')   
 
 """now open the fasta file containing the headers you want to change. This is going to be done on my viral db which 
@@ -53,7 +50,6 @@ for line in fin2:
     if line.startswith('>'):
         acc_num=line[1:12]
         new_header=('>'+'ref|'+acc_num+'|'+' '+lineage_info[acc_num]+'\n') #changed the header more to work with my combined_blast_o.py script
-        #print (new_header)
         fout.write(new_header)      
     else:
         #print (line)
@@ -62,6 +58,5 @@ for line in fin2:
 fin2.close()
 fin1.close()
 fout.close()
-#return 
 
 print ('Done :)')
