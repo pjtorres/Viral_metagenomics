@@ -4,6 +4,7 @@ import argparse
 import os
 
 "Script will sum up your blast output into an otu style format"
+
 #---------- Split to count the number of hits given by a blast output and make an OTU style format------
 parser=argparse.ArgumentParser(description="Script will sum up your blast text output into an otu style format. For this script to work output you must output your blastn data like this '-outfmt 6 stitle'. Also make sure all your blast outputs you want to summarize are in their own directory")
 parser.add_argument('-d','--dir', help='All blast.txt files should be in one directory. Add directory here or leave blank for current working firectory', required=False)
@@ -16,12 +17,10 @@ o_file=str(args.out)
 if args.dir is None:
     directory=str(os.getcwd())
     directory=directory+"/"
-
 else:
     cwd=str(os.getcwd())
     cwd=cwd+"/"
     directory=cwd+directory_i
-
 
 #-----------------Make dictionary and call each txt file in directory-------------------------------
 """make dictionary to keep count of blast outputs. Keys are going to be taxa name and a list will keep track of the abundance for each file"""
@@ -40,14 +39,14 @@ for txt in F:
 
         """Add taxa/gene as key in dictionary and its value is a list in which each element represents taxa/gene count for each file.Checks to see if Taxa is already in the dictionary, if not, it will add it and and start to makes a list with a zero to keep count each time it sees that taxa it will add 1."""
         if taxName not in taxa:
-            taxa[taxName]=[0]*len(F) # Make a list for to keep the Taxa abundace for each file in directory or length of F.
+            taxa[taxName]=[0]*len(F)# Make a list for to keep the Taxa abundace for each file in directory or length of F.
         else:pass
         taxa[taxName][F.index(txt)]+=1
 print "There are a total of " +str(len(taxa)) +" taxa"
+
 """Above it does two things. First it will be calling the values to the Key 'taxName'. But because there are a list of counters (one for each file) we need to tell it which one. By indexing all the files in 'txt' you keep everything in order, call the right list index and add 1 each time you see that taxaName in that particular file."""
 
 #-----------------Create new output file and write in abundance
-
 o=open(o_file,"w+")
 o.write("Taxa\t"+"\t".join(F)+"\n")
 for i in taxa:
