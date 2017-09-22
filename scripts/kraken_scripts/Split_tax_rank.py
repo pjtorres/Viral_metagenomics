@@ -5,6 +5,8 @@ import sys, getopt
 import argparse
 
 '''This script is used to split kraken-mpa formatted  output into files based on taxonomy rank'''
+
+#-------------------Command line arguments--------------------------------------------------
 parser = argparse.ArgumentParser(description='This is a script to parse out a kraken-mpa formated file based on taxonomic rank.')
 parser.add_argument('-i','--input', help='Input file name aka the output from running kraken-mpa',required=True)
 parser.add_argument('-o','--output',help='Output directory name.', required=False)
@@ -45,7 +47,7 @@ fout_s=open(s,"w")
 fout_s.write(header)
 
 #-------------------------------------------------------------------------------
-'''Followign Split function will create a list seperated by '|' (this is how different
+'''Following Split function will create a list seperated by '|' (this is how different
 taxonomic levels are seperated in kraken.  This way the length of the list will be dictitated
 by how many taxonomic levels the current line contains (i.e., len(kingdom)==1, len(phylum)==2,
 len(class)==3 ..ect)'''
