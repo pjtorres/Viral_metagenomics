@@ -1,4 +1,4 @@
-#!bin/bash
+#!/bin/bash
 #$ -cwd
 
 # This is an example of how a script would look like that allows me to downlod data from the HMP (this case supragingival_plaque), deconpress it
