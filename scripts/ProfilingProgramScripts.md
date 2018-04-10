@@ -31,6 +31,9 @@
 ####     c. Then we can go to the next part which is pasting the viral names to viral hits:
             cut -d' ' -f1 --complement viral_names.txt | paste viral_hits.txt - >viral_hits_and_names.txt
             
+            
+      
+            
 ## BLAST
 
 ####     a. ```/home3/torres/ncbi-blast-2.6.0+/bin/blastn -query ../smalt/DNA3_trim_prin_nohg19.fasta -outfmt "6 stitle pident evalue" -out DNA3_trim_prin_noh19_viral_blast.txt -db ../Virus_db/viral_blastdb -dust no -max_target_seqs 1```
@@ -39,4 +42,5 @@
 #####    stitle makes sure your output includes the genus name which is really cool. I use '-max_taget_seqs 1' in the end to make sure it only returns the blast hit with the highest percent similarity and evalue score
 #####    c. run blastn with increased specificity ```~/ncbi-blast-2.6.0+/bin/blastn -query File1.fasta -outfmt "6 stitle" -out File1.blastn.txt -db ~/Virus_db/viral_nucleotide/viral -dust no -max_target_seqs 1 -perc_identity 90 -evalue 0.0001 -min_raw_gapped_score 105```
 
+#### 16S database : ftp://ftp.ncbi.nlm.nih.gov/blast/db/
 ####                                                                                             Pedro J. Torres - pjtorres88@gmail.com
