@@ -9,6 +9,7 @@
 ## 3. Filter, reformat, or trim your genomic and metagenomic sequence data
 ### I usually use [Prinseq](http://prinseq.sourceforge.net/)
 ```
+
 #!/bin/bash
 #$ -cwd
 #$ -S /bin/sh
