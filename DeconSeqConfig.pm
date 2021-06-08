@@ -1,5 +1,6 @@
 package DeconSeqConfig;
 
+
 use strict;
 
 use constant DEBUG => 0;
